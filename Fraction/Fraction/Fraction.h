@@ -1,11 +1,6 @@
 template <typename T>
 class Fraction {
 
-private:
-
-	T _numerator;
-	T _denominator;
-
 public:
 
 	Fraction(); // no argumens constructor
@@ -13,4 +8,6 @@ public:
 	Fraction(T numerator, T denominator); //two arguments constructor
 	~Fraction(); //destructor
 
+	T _numerator;
+	T _denominator;
 };
