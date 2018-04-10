@@ -4,8 +4,7 @@ class Fraction {
 public:
 
 	Fraction(); // no argumens constructor
-	Fraction(T numerator); //one argument constructor
-	Fraction(T numerator, T denominator); //two arguments constructor
+	Fraction(T numerator, T denominator = (T)1); //two arguments constructor
 	~Fraction(); //destructor
 
 	T _numerator;
@@ -18,14 +17,8 @@ Fraction<T>::Fraction() //no arguments constructor
 {
 }
 
-template <class T>
-Fraction<T>::Fraction(T numerator) //one argument construtor
-{
-	_numerator = numerator;
-}
-
-template <class T>
-Fraction<T>::Fraction(T numerator, T denominator) //two arguments constructor
+template <class T> //one argument construtor, denominator is 1 if not present
+Fraction<T>::Fraction(T numerator, T denominator) 
 {
 	_numerator = numerator;
 	_denominator = denominator;
