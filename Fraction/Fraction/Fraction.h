@@ -138,5 +138,3 @@ Fraction<T> Fraction<T>::operator / (Fraction<T> fraction) // / operator
 	T denominatorR = numerator1 * numerator2;
 	return Fraction<T>(numeratorR, denominatorR);
 }
-
-
