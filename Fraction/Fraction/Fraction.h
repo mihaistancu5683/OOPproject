@@ -108,6 +108,14 @@ Fraction<T> Fraction<T>::operator - (Fraction<T> fraction) // - operator
 }
 
 template <class T>
+Fraction<T> Fraction<T>::operator -- (int) // -- operator
+{
+	Fraction<T> temp = *this;
+	this->SetNumerator((this->GetNumerator()) - (this->GetDenominator()));
+	return *this;
+}
+
+template <class T>
 Fraction<T> Fraction<T>::operator * (Fraction<T> fraction) // * operator
 {
 	T numerator1 = this->GetNumerator();
