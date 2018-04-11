@@ -14,11 +14,15 @@ public:
 
 	T GetNumerator(); //getters
 	T GetDenominator();
+	void SetNumerator(T); //setters
+	void SetDenominator(T);
 
 	bool operator == (Fraction<T>);
 
 	Fraction<T> operator + (Fraction<T>);
+	Fraction<T> operator ++ (int);
 	Fraction<T> operator - (Fraction<T>);
+	Fraction<T> operator -- (int);
 	Fraction<T> operator * (Fraction<T>);
 	Fraction<T> operator / (Fraction<T>);
 
@@ -52,10 +56,20 @@ T Fraction<T>::GetDenominator() {
 }
 
 template <class T>
+void Fraction<T>::SetNumerator(T input) {
+	this->_numerator = input;
+}
+
+template <class T>
+void Fraction<T>::SetDenominator(T input) {
+	this->_denominator = input;
+}
+
+template <class T>
 bool Fraction<T>::operator == (Fraction<T> fraction) // == operator
 {
-	if (abs(this->_numerator * fraction._denominator -
-		    this->_denominator * fraction._numerator) < 0.000001)
+	if (abs(this->GetNumerator() * fraction.GetDenominator() -
+		    this->GetDenominator() * fraction.GetNumerator()) < 0.000001)
 		return true;
 	else
 		return false;
@@ -64,8 +78,8 @@ bool Fraction<T>::operator == (Fraction<T> fraction) // == operator
 template <class T>
 Fraction<T> Fraction<T>::operator + (Fraction<T> fraction) // + operator
 {
-	T numerator1 = this->_numerator;
-	T denominator1 = this->_denominator;
+	T numerator1 = this->GetNumerator();
+	T denominator1 = this->GetDenominator();
 	T numerator2 = fraction._numerator;
 	T denominator2 = fraction._denominator;
 	T denominatorR = denominator1 * denominator2;
@@ -76,8 +90,8 @@ Fraction<T> Fraction<T>::operator + (Fraction<T> fraction) // + operator
 template <class T>
 Fraction<T> Fraction<T>::operator - (Fraction<T> fraction) // - operator
 {
-	T numerator1 = this->_numerator;
-	T denominator1 = this->_denominator;
+	T numerator1 = this->GetNumerator();
+	T denominator1 = this->GetDenominator();
 	T numerator2 = fraction._numerator;
 	T denominator2 = fraction._denominator;
 	T denominatorR = denominator1 * denominator2;
@@ -88,8 +102,8 @@ Fraction<T> Fraction<T>::operator - (Fraction<T> fraction) // - operator
 template <class T>
 Fraction<T> Fraction<T>::operator * (Fraction<T> fraction) // * operator
 {
-	T numerator1 = this->_numerator;
-	T denominator1 = this->_denominator;
+	T numerator1 = this->GetNumerator();
+	T denominator1 = this->GetDenominator();
 	T numerator2 = fraction._numerator;
 	T denominator2 = fraction._denominator;
 	T numeratorR = numerator1 * numerator2;
@@ -100,10 +114,10 @@ Fraction<T> Fraction<T>::operator * (Fraction<T> fraction) // * operator
 template <class T>
 Fraction<T> Fraction<T>::operator / (Fraction<T> fraction) // / operator
 {
-	T numerator1 = this->_numerator;
-	T denominator1 = this->_denominator;
-	T numerator2 = fraction._numerator;
-	T denominator2 = fraction._denominator;
+	T numerator1 = this->GetNumerator();
+	T denominator1 = this->GetDenominator();
+	T numerator2 = fraction.GetNumerator();
+	T denominator2 = fraction.GetDenominator();
 	T numeratorR = denominator1 * denominator2;
 	T denominatorR = numerator1 * numerator2;
 	return Fraction<T>(numeratorR, denominatorR);
