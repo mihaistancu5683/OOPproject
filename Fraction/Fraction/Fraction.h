@@ -19,6 +19,7 @@ public:
 
 	bool operator == (Fraction<T>);
 
+	Fraction<T>& operator = (Fraction<T>);
 	Fraction<T> operator + (Fraction<T>);
 	Fraction<T> operator ++ (int);
 	Fraction<T> operator - (Fraction<T>);
@@ -73,6 +74,15 @@ bool Fraction<T>::operator == (Fraction<T> fraction) // == operator
 		return true;
 	else
 		return false;
+}
+
+template <class T>
+Fraction<T>& Fraction<T>::operator = (Fraction<T> _fraction) // = operator
+{
+	this->_denominator = _fraction.GetDenominator();
+	this->_numerator = _fraction.GetNumerator();
+
+	return *this;
 }
 
 template <class T>
