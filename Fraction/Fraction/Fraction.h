@@ -1,11 +1,19 @@
 template <typename T>
 class Fraction {
 
+private:
+
+	T _numerator;
+	T _denominator;
+
 public:
 
 	Fraction(); // no argumens constructor
 	Fraction(T numerator, T denominator = (T)1); //two arguments constructor
 	~Fraction(); //destructor
+
+	T GetNumerator(); //getters
+	T GetDenominator();
 
 	bool operator == (Fraction<T>);
 
@@ -13,9 +21,6 @@ public:
 	Fraction<T> operator - (Fraction<T>);
 	Fraction<T> operator * (Fraction<T>);
 	Fraction<T> operator / (Fraction<T>);
-
-	T _numerator;
-	T _denominator;
 
 };
 
@@ -34,6 +39,16 @@ Fraction<T>::Fraction(T numerator, T denominator)
 template <class T>
 Fraction<T>::~Fraction() //destructor
 {
+}
+
+template <class T>
+T Fraction<T>::GetNumerator() {
+	return _numerator;
+}
+
+template <class T>
+T Fraction<T>::GetDenominator() {
+	return _denominator;
 }
 
 template <class T>
