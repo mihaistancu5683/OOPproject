@@ -21,6 +21,8 @@ public:
 
 	Fraction<T>& operator = (Fraction<T>);
 	Fraction<T> operator + (Fraction<T>);
+	Fraction<T> operator + (T);
+	Fraction<T> operator + ();
 	Fraction<T> operator ++ (int);
 	Fraction<T> operator - (Fraction<T>);
 	Fraction<T> operator -- (int);
@@ -86,7 +88,7 @@ Fraction<T>& Fraction<T>::operator = (Fraction<T> _fraction) // = operator
 }
 
 template <class T>
-Fraction<T> Fraction<T>::operator + (Fraction<T> fraction) // + operator
+Fraction<T> Fraction<T>::operator + (Fraction<T> fraction) // + operator (fraction + fraction)
 {
 	T numerator1 = this->GetNumerator();
 	T denominator1 = this->GetDenominator();
@@ -95,6 +97,22 @@ Fraction<T> Fraction<T>::operator + (Fraction<T> fraction) // + operator
 	T denominatorR = denominator1 * denominator2;
 	T numeratorR = numerator1 * denominator2 + numerator2 * denominator1;
 	return Fraction<T>(numeratorR, denominatorR);
+}
+
+template <class T>
+Fraction<T> Fraction<T>::operator + (T number) // + operator (fraction + number)
+{
+	T numerator = this->GetNumerator();
+	T denominator = this->GetDenominator();
+	T denominatorR = denominator;
+	T numeratorR = numerator + number * denominator;
+	return Fraction<T>(numeratorR, denominatorR);
+}
+
+template <class T>
+Fraction<T> Fraction<T>::operator + () // + operator (+ fraction)
+{
+	return Fraction<T>(this->GetNumerator(), this->GetDenominator());
 }
 
 template <class T>
