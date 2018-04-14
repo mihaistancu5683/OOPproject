@@ -10,6 +10,7 @@ public:
 
 	Fraction(); // no argumens constructor
 	Fraction(T numerator, T denominator = (T)1); //two arguments constructor
+	Fraction(const Fraction<T>&);//copy constructor
 	~Fraction(); //destructor
 
 	T GetNumerator(); //getters
@@ -38,11 +39,19 @@ Fraction<T>::Fraction() //no arguments constructor
 {
 }
 
-template <class T> //one argument construtor, denominator is 1 if not present
+template <class T> //two arguments constructor
 Fraction<T>::Fraction(T numerator, T denominator) 
 {
 	_numerator = numerator;
 	_denominator = denominator;
+}
+
+template <class T> //copy constructor
+Fraction<T>::Fraction(const Fraction<T>& rhs)
+{
+	Fraction<T>& lhs = const_cast<Fraction<T>&>(rhs);
+	_numerator = lhs.GetNumerator();
+	_denominator = lhs.GetDenominator();
 }
 
 template <class T>
