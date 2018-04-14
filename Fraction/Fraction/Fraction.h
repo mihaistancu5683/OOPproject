@@ -1,3 +1,4 @@
+#include <exception>
 template <typename T>
 class Fraction {
 
@@ -15,6 +16,9 @@ public:
 
 	T GetNumerator(); //getters
 	T GetDenominator();
+
+	Fraction<T> ReadFraction(T, T);
+
 	void SetNumerator(T); //setters
 	void SetDenominator(T);
 
@@ -60,6 +64,14 @@ Fraction<T>::~Fraction() //destructor
 }
 
 template <class T>
+Fraction<T> Fraction<T>::ReadFraction(T a, T b)
+{
+	cin >> a;
+	cin >> b;
+	return Fraction<T>(a, b);
+}
+
+template <class T>
 T Fraction<T>::GetNumerator() {
 	return _numerator;
 }
@@ -83,7 +95,7 @@ template <class T>
 bool Fraction<T>::operator == (Fraction<T> fraction) // == operator
 {
 	if (abs(this->GetNumerator() * fraction.GetDenominator() -
-		    this->GetDenominator() * fraction.GetNumerator()) < 0.000001)
+		    this->GetDenominator() * fraction.GetNumerator()) == (T) 0)
 		return true;
 	else
 		return false;
@@ -189,6 +201,7 @@ Fraction<T> Fraction<T>::operator / (Fraction<T> fraction) // / operator
 	T denominator1 = this->GetDenominator();
 	T numerator2 = fraction.GetNumerator();
 	T denominator2 = fraction.GetDenominator();
+	if (numerator2 == (T) 0) throw("Division by 0!");
 	T numeratorR = denominator1 * denominator2;
 	T denominatorR = numerator1 * numerator2;
 	return Fraction<T>(numeratorR, denominatorR);
